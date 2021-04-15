@@ -1,0 +1,198 @@
+---
+title: "Ejercicios Tema 2"
+output: github_document
+---
+
+__Ejercicio 2.3.__  
+_Supongamos que tenemos tres vectores de igual longitud, X, Y y Z, y queremos obtener la matriz de correlaciones. Nada más fácil: sabiendo que cor() proporciona lo que queremos, vamos a la consola y escribimos:_
+```{r}
+X <- rnorm(100)
+Y <- X + (rnorm(100)/2)
+Z <- Y + (rnorm(100)/2)
+
+#Solo nos permite correlación entre 2 varibles. 
+# cor(X, Y, Z)
+
+#Honestamente, es mejor trabajar con DF la mayor parte del tiempo. Ahorra tiempo y muchas veces 
+# simplifica la vida. ¿Puede ser un poquito overkill? Si. Mejor que zozobre que no que zofalte.
+df <- data.frame(X, Y, Z)
+
+cor(df)
+```
+
+__Ejercicio 2.4.__  
+_Vamos a crear un vector atómico de cada uno de los cinco tipos vistos hasta ahora, con dos condiciones: primera, se crearan en orden, empezando por el tipo que menos versatilidad tiene y acabando con el que más; segundo, han de tener longitud creciente, comenzando en dos._
+_Consulta el tipo y la estructura de cada vector creado._
+```{r}
+#Bolean
+bol <-  c(TRUE, FALSE)
+
+#Integer
+int <- 1:3
+
+#Double
+dbl <- c(3.14, 2.71828, 6.022e23, 1.6618)
+
+#Complex 
+#A saber, hace falta indicar delante de 'i' una cifra para que sepa que es un número
+# imaginario.
+cplx <- c(1+1i, 0+1i, -2+3i, 7+5i, 11-13i)
+
+#String
+letr <- c("Esto", "es", "un", "texto", "breve", "en", "una variable de 7 elementos, ¡ja!")
+
+#Como soy bastante perezoso comprobamos mediante un bucle for. Para ello, crearé una 
+#lista con las variables y la recorreré con el bucle.
+variables <- list(bol, int, dbl, cplx, letr)
+
+# Usando str() directamente ya te indica el tipo, estrucutra y ¡hasta los primero elementos!,
+# por lo que no lo voy a añadir al ejercicio. 
+for (val in variables) { cat(paste(str(val), '\n' ))}
+
+```
+
+
+__Ejercicio 2.5.__  
+_Utilizando los vectores construidos en el ejercicio anterior, crea una lista con tres componentes. Construye también un data frame con los dos vectores que no usaste para la lista. Probablemente tendrás que hacer algún ajuste respecto a la longitud de los componentes._
+_Prueba a crear otras listas y data frames con otras combinaciones de esos mismos componentes._
+
+```{r}
+#Creamos una lista con bol, cplx y num. 
+variables <- list(int, cplx, letr)
+variables
+
+df <- data.frame(bol, dbl)
+df
+```
+__Ejercicio 2.6.__  
+_Construye toda una serie de objetos (vectores atómicos, matriz, lista, data frame) y consulta para cada uno su tipo, clase y longitud. Usa la función attributes() para conocer los atributos de cada objeto._
+```{r}
+#Vector atómico num
+num <- 2:7
+#Vector atómico char
+letrs <- LETTERS[1:6]
+#Lista
+lst <- list(primero = 'uno', segundo = 'dos', tercero='Nada',
+            cuarto= 'tres', quinto='membrillo', sexto='Mediana')
+#DataFrames
+df <- data.frame(num, letrs)
+#Matricez
+mtrx <- matrix(num, 2, 3)
+
+#Tipo typeof(), clase class(), longitud length() y atributos attributes()
+#Para ahorrar en codigo repetirmos la técnica del bucle.
+#Creamos una lista que podamos recorrer con el bucle donde tambien asignamos
+#nombres a las variables de ahí el 'num=num' el primer 'num' es el nombre, el
+#segundo le asigna el 'contenido'.
+variables <- list(num=num, letrs=letrs, lst=lst, df=df, mtrx=mtrx)
+
+#Creamos el bucle.
+for (var in variables){
+  print(var)
+  print(typeof(var))
+  print(class(var))
+  print(length(var))
+  print(attributes(var))
+  cat('\n')
+  
+}
+```
+__Ejercicio 2.7.__  
+_Utiliza los objetos construidos en el ejercicio anterior y asigna nombres a algunos de ellos. Observa el comportamiento de names() con matrices y data frames._
+_Luego consulta sus atributos y estructura._
+
+```{r}
+names(num) <- LETTERS[1:6];num
+#¿Porqué 6:11 y no 6:12? Por que el 6 inicial se incluye. 
+names(letrs) <- 6:11;letrs 
+
+#Ciudado, presta atención a los detalles. Estamos añadiendo nombres a las columnas del
+# del df, ¡no valores!
+names(df) <- c("Num", "letrs");str(df)
+
+names(mtrx) <- LETTERS[1:6];mtrx
+rm(lst)
+lst <- list(num, letrs, df)
+names(lst) <- c('num', 'letrs', 'df');lst
+
+variables <- list(num=num, letrs=letrs, lst=lst, df=df, mtrx=mtrx)
+
+#Luego consulta sus atributos y estructura… ¿otra vez? Lo suyo sería crear una funcóm o copiar el 
+# codigo del ejercicio anterior ejemplo para hacela:
+atrib <- function(variables){
+  #Para ayudar a la legibilidad del output vamos a poner el nombre de la variable
+  #al inicio. Para ello declaramos una variable n que actue de contador y recorra
+  #la lista de nombres que devuelve la función names(), si de eso hablaba en el 
+  #ejercicio anterior.
+  n <- 1
+  
+  #En caso de duda '\n' es nueva linea o golpe de carro. '\' es un simbolo especial o de escape y le
+  #indica a (en este caso) cat() que el siguiente caracter es especial.
+  #Iniciamos el bucle
+  for (var in variables){
+    print(names(variables[n]))
+    cat('\nEs de tipo: ',typeof(var))
+    cat('\nEs de clase: ', class(var))
+    cat('\nEs de longitud: ', length(var))
+    #Por la estructura que tiene lo que nos devuelve la función attributes() usar
+    # cat() no es una opción así que lo dejaremos así. Se puede ver que cat() y print
+    # se comportan de forma distinta.
+    cat('\nSus atributos son: \n')
+    print(attributes(var))
+    cat('\n')
+  #Una vez terminado de implimir añadimos uno a n para que en la siguiente iteración
+  #se imprima el nombre de la siguiente variable.
+    n <- n+1
+  }
+}
+
+#Para luego hacer la comprobación solo con esta linea de código.
+atrib(variables)
+```
+
+__Ejercicio 2.8.__  
+_Dado un vector x <- rnorm(30, 100, 15), obtén el vector y tal que:_  
+
+$$y=f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$  
+_Utiliza la menor cantidad de paréntesis posible sin perder claridad._
+
+```{r}
+mu <- 100
+sigma <- 15
+x <- rnorm(30, 100, 15)
+
+
+y <- (1/(sigma*sqrt(2*pi)))*exp(-((x-mu)^2)/(2*sigma^2))
+
+plot(x,y)
+```
+
+__Ejercicio 2.9.__  
+_Con lo que sabemos hasta ahora, vamos a ejecutar cuatro acciones: dos de ellas con warning y dos que generen un error_
+
+```{r}
+a1 <- c(1,2,3,4)
+a3 <-  c(5,6,7)
+#aviso, ya que los vectores son de distinta longitud por lo que para el último
+# R usa el primero de la lista, vuelve a empezar.
+a1+a3
+
+#Aqui todo ok
+m1 <- matrix(1:6, 2,3)
+
+#aviso
+#Peeero, aqui indicamos 5 valores en para una matriz 2x2, R pasa del último.
+m2 <- matrix(4:8, 2,2)
+
+
+#Tengo que comentar ambas lineas porque sino no compila Rmarkdown. 
+
+#Error, no pudes sumar dos matricies 2x3 y 2x2
+#m1+m2
+
+#Error, son la segunda matriz no estña declarada, igual por un error al 
+# escribir la…
+#m1 + m3
+
+```
+
