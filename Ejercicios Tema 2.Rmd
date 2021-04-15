@@ -153,7 +153,8 @@ atrib(variables)
 __Ejercicio 2.8.__  
 _Dado un vector x <- rnorm(30, 100, 15), obtén el vector y tal que:_  
 
-$$y=f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$  
+$y=f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$  
+
 _Utiliza la menor cantidad de paréntesis posible sin perder claridad._
 
 ```{r}
@@ -181,7 +182,7 @@ a1+a3
 m1 <- matrix(1:6, 2,3)
 
 #aviso
-#Peeero, aqui indicamos 5 valores en para una matriz 2x2, R pasa del último.
+#Peeero, aquí indicamos 5 valores en para una matriz 2x2, R pasa del último.
 m2 <- matrix(4:8, 2,2)
 
 
@@ -190,8 +191,8 @@ m2 <- matrix(4:8, 2,2)
 #Error, no pudes sumar dos matricies 2x3 y 2x2
 #m1+m2
 
-#Error, son la segunda matriz no estña declarada, igual por un error al 
-# escribir la…
+#Error, la segunda matriz no está declarada, igual por un error al 
+# escribir…
 #m1 + m3
 
 ```

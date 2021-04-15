@@ -371,7 +371,7 @@ atrib(variables)
 **Ejercicio 2.8.**  
 *Dado un vector x &lt;- rnorm(30, 100, 15), obtén el vector y tal que:*
 
-$y=f(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$
+$$y=f(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$$
   
 *Utiliza la menor cantidad de paréntesis posible sin perder claridad.*
 
