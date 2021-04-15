@@ -22,9 +22,9 @@ cor(df)
 ```
 
     ##           X         Y         Z
-    ## X 1.0000000 0.9153799 0.8488763
-    ## Y 0.9153799 1.0000000 0.9233803
-    ## Z 0.8488763 0.9233803 1.0000000
+    ## X 1.0000000 0.8898659 0.8005492
+    ## Y 0.8898659 1.0000000 0.9253287
+    ## Z 0.8005492 0.9253287 1.0000000
 
 **Ejercicio 2.4.**  
 *Vamos a crear un vector atómico de cada uno de los cinco tipos vistos
@@ -371,8 +371,8 @@ atrib(variables)
 **Ejercicio 2.8.**  
 *Dado un vector x &lt;- rnorm(30, 100, 15), obtén el vector y tal que:*
 
-$$y=f(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$$
-  
+$y=f(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$
+
 *Utiliza la menor cantidad de paréntesis posible sin perder claridad.*
 
 ``` r
@@ -410,7 +410,7 @@ a1+a3
 m1 <- matrix(1:6, 2,3)
 
 #aviso
-#Peeero, aqui indicamos 5 valores en para una matriz 2x2, R pasa del último.
+#Peeero, aquí indicamos 5 valores en para una matriz 2x2, R pasa del último.
 m2 <- matrix(4:8, 2,2)
 ```
 
@@ -423,7 +423,7 @@ m2 <- matrix(4:8, 2,2)
 #Error, no pudes sumar dos matricies 2x3 y 2x2
 #m1+m2
 
-#Error, son la segunda matriz no estña declarada, igual por un error al 
-# escribir la…
+#Error, la segunda matriz no está declarada, igual por un error al 
+# escribir…
 #m1 + m3
 ```
