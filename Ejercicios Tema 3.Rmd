@@ -7,34 +7,46 @@ __Ejercicio 3.1.__
 _Podemos ahora generar tres números aleatorios con distribución normal con media 100 y desviación típica 15. Para ello es útil consultar la ayuda, ?rnorm._  
 ```{r}
 
+rnorm(3, 100, 15)
 ```
 
 __Ejercicio 3.2.__  
 _Definido el vector r a continuación, deduce la salida de las siguientes líneas de código:_  
 ```{r}
-#r <- c(10, 20, 30, 40, 50, 60, 70, 80)
+r <- c(10, 20, 30, 40, 50, 60, 70, 80)
 
 #r[2]
+# 20
 
 #r[1:5]
+# 10, 20, 30, 40, 50
 
 #r[]
+#10, 20, 30, 40, 50, 60, 70, 80
 
 #r[:]
+#Ni idea, pues da error.
 
 #r[1:]
+#Tambien da error.
 
 #r[:5]
+#Error igual.
 
 #r[2, 3]
+#20,30 Nope, esto da error. Lo que tu decias es el ejercicio siguiente.
 
 #r[c(2, 3)]
+#20, 30
 
 #r[-c(2, 3)]
+#10, 40, 50, 60, 70, 80
 
 #r[5:length(r)]
+#50 60 70 80
 
 #r[] <- c(2, 3); r
+#2 3 2 3 2 3 2 3
 ```
 
 __Ejercicio 3.3.__  
@@ -42,42 +54,81 @@ _Creamos el vector Id (con la identificación de cuatro pacientes: 103, 110, 156
 _Después unimos ambos de forma que tengamos una columna por variable y lo asignamos al objeto pac._  
 _¿De qué tipo y clase es el objeto obtenido?_  
 ```{r}
+id <- c(103, 110, 156, 212)
+edad <- c(76, 45, 67, 34)
 
+(pac <- cbind(id,edad))
+
+typeof(pac)
+class(pac)
 ```
 
 __Ejercicio 3.4.__  
 _Tenemos los nombres de los cuatro pacientes anteriores (Laura, Alberto, Francisco, Berta). Podemos crear el data frame pacientes que contenga los datos de pac más los nombres._  
 _¿De qué tipo y clase es el objeto obtenido?_  
 ```{r}
+nombres <- c('Laura', 'Alberto', 'Francisco', 'Berta')
 
+df <- data.frame(pac, nombres)
+df
+
+typeof(df)
+class(df)
 ```
 
 __Ejercicio 3.5.__  
 _A continuación se presentan una serie de definiciones y acciones. El objetivo es predecir el resultado a obtener, atendiendo especialmente a si las uniones son factibles o no y, en caso afirmativo, qué tipo de resultado se obtiene._
 ```{r}
 #dos <- c(100, 200); dos
+#Asignamos el vector c(100, 200) a 'dos' y mostramos 'dos' 100 200
 
 #tres <- c(10, 20, 30); tres
+#Asignamos el vector c(10, 20, 30) a 'tres' y mostramos 'tres' 10 20 30
 
 #cuatro <- c(1, 2, 3, 4); cuatro
+#Asignamos el vector c(1, 2, 3, 4) a 'cuatro' y mostramos 'cuatro' 1 2 3 4
 
 #dos + tres
+#Da como resultado 110, 220, 30? Nope, recuerda que no se pueden sumar así
+# si son de diferente longitud.
 
 #cbind(dos, tres)
+#100  10
+#200  20
+#100  30
 
 #data.frame(dos, tres)
+#100  10
+#200  20
+#Na   30?
+#Nope, da error. Los vectores son de deferente longitud y no permite el reciclaje.
 
 #cbind(dos, cuatro)
+#100  1
+#200  2
+#100  3
+#200  4
 
 #data.frame(dos, cuatro)
+#100  1
+#200  2
+#100  3
+#200  4
+
 
 #cbind(tres, cuatro)
+#Error, vectores de distinta longitud y no permite el reciclaje. 
 
 #data.frame(tres, cuatro)
+#Error, vectores de distinta longitud y no permite el reciclaje. 
 
 #cbind(dos, tres, cuatro)
+#Funciona pero da un aviso. Se recicla entero el vector 'dos', pero
+# sólo el primer elemento del vector 'tres'.
+
 
 #data.frame(dos, tres, cuatro)
+#Da error directamente.
 
 ```
 
@@ -89,7 +140,25 @@ _Partimos del vector edad definido anteriormente. A partir de él podemos obtene
 - _Cuántos pacientes tienen más de 50 años._  
 
 ```{r}
+#recordemos: edad <- c(76, 45, 67, 34)
+#Un vector lógico donde se indique si el paciente tiene más de 50 años.
+(edad > 50)
 
+#Las edades mayores de 50 años.
+#Del vector edad, aquellos elementos cuyo indices corresponde con los valores mayores de 50
+(edad[which(edad > 50)])
+#Usando un indice de valores V, F
+edad[edad > 50]
+
+#Los índices de los pacientes con más de 50 años.
+#Parentesis cuando haces una asignación. 
+which(edad > 50)
+
+#Cuántos pacientes tienen más de 50 años.
+length(which(edad > 50))
+
+#Aquí sumamos los valores boleanos T=1 F=0, pero corremos cierto riesgo. 
+sum(edad > 50)
 ```
 
 __Ejercicio 3.7.__  
@@ -102,21 +171,29 @@ _Utilizaremos la función seq() para generar:__
 
 ```{r}
 #v1, un vector con valores desde -3 hasta 3 a intervalos de 0.5
+(v1 <- seq(-3, 3, 0.5))
 
 #v2, un vector con valores desde 3 hasta 0 a intervalos de 0.1
+#Al ir hacia abajo, ¡el 'by' tienen que ser negativo!
+(v2 <- seq(3, 0, -.1))
 
 #v3, un vector con 10 valores equiespaciados desde 13 hasta 130
+(v3 <- seq(13, 130, length.out=10))
 
 #v4, un vector con 3 valores separados por intervalos de 1/3 desde -9.67
+(v4 <- seq(from=-9.67, by= 1/3, length.out=3))
 
 #v5, un vector de la misma longitud que v1, con valores correlativos a partir de 1
+(v5 <- seq(along =v1))
 ```
 
 __Ejercicio 3.8.__  
 _¿Qué tipo de comportamiento tendrá la función seq() si se utiliza el argumento along.with únicamente? ¿Y si únicamente utilizamos length.out? Aplíquese al siguiente código._
 
 ```{r}
+seq(along.with = c(10, 20))
 
+seq(length.out=8)
 ```
 
 __Ejercicio 3.9.__  
@@ -125,6 +202,11 @@ _Ahora podemos combinar las funciones seq() y rep() para generar las siguientes 
 - 0 0 2 2 4 4 6 6 8 8 10 10  
 - 5 4 3 2 1 5 4 3 2 1 5 4 3 2 1  
 ```{r}
+rep(seq(5,9), each=3)
+
+rep(seq(0,10,2), each=2)
+
+rep(seq(5,1), times=3)
 
 ```
 
@@ -133,30 +215,47 @@ _A continuación se presentan una serie de definiciones y acciones. El objetivo 
 ```{r}
 
 #vec <- seq(2, 12, length.out = 6)
+#double 2, 4, 6, 8, 10, 12
 
 #vec <- as.double(vec)
+#No hay cambios
 
 #vec[5] <- "a"
+#Al añadir una letra pasa al tipo char. 2, 4, 6, 8, a, 12
 
 #vec <- as.integer(vec)
+#El 'a' dará problemas. 2, 4, 6, 8, NA, 12
 
 #vec[5] <- T
+#El 'T' dará problemas. 2, 4, 6, 8, 1, 12
 
 #vec <- as.double(vec)
 
+
 #vec <- vec/2
+#Sigue siendo 'double', 1.0, 2.0, 3.0, 4.0, 0.5, 6.0
 
 #as.logical(vec)
+#No hay ceros, por lo que… todo Ts? Sip. TRUE TRUE TRUE TRUE TRUE TRUE
 
 #as.logical(as.integer(vec))
+#Como enteros, pero el quinto elemento es double, por lo que devuelve un 0. 0 es Falso
+# por lo que el resueltado es TRUE  TRUE  TRUE  TRUE FALSE  TRUE
 
 ```
 
 __Ejercicio 3.11.__  
 _Si tenemos la cadena de caracteres ch <- "1.7+3i". ¿Qué resultado podemos esperar obtener de aplicarle las siguientes funciones: as.integer(), as.double() y as.complex()?_  
 ```{r}
+ch <- "1.7+3i"
+#as.integer() 
+#No puede porque hay texto.
 
+#as.double()
+#También dará problemas por la misma razón. 
 
+#as.complex()
+#Evaluará el texto como un número complejo.
 ```
 
 
