@@ -22,9 +22,9 @@ cor(df)
 ```
 
     ##           X         Y         Z
-    ## X 1.0000000 0.9031589 0.8171852
-    ## Y 0.9031589 1.0000000 0.9233153
-    ## Z 0.8171852 0.9233153 1.0000000
+    ## X 1.0000000 0.8944772 0.8252262
+    ## Y 0.8944772 1.0000000 0.9220473
+    ## Z 0.8252262 0.9220473 1.0000000
 
 **Ejercicio 2.4.**  
 *Vamos a crear un vector atómico de cada uno de los cinco tipos vistos
@@ -382,11 +382,13 @@ x <- rnorm(30, 100, 15)
 
 
 y <- (1/(sigma*sqrt(2*pi)))*exp(-((x-mu)**2)/(2*sigma**2))
+```
 
+``` r
 plot(x,y)
 ```
 
-![](Ejercicios-Tema-2_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](Ejercicios-Tema-2_files/figure-gfm/simpleplot-1.png)<!-- -->
 
 **Ejercicio 2.9.**  
 *Con lo que sabemos hasta ahora, vamos a ejecutar cuatro acciones: dos

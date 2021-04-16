@@ -164,9 +164,11 @@ x <- rnorm(30, 100, 15)
 
 
 y <- (1/(sigma*sqrt(2*pi)))*exp(-((x-mu)**2)/(2*sigma**2))
-
+```
+```{r simpleplot}
 plot(x,y)
 ```
+
 
 __Ejercicio 2.9.__  
 _Con lo que sabemos hasta ahora, vamos a ejecutar cuatro acciones: dos de ellas con warning y dos que generen un error_
