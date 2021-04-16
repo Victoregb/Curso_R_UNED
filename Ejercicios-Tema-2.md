@@ -22,9 +22,9 @@ cor(df)
 ```
 
     ##           X         Y         Z
-    ## X 1.0000000 0.8898659 0.8005492
-    ## Y 0.8898659 1.0000000 0.9253287
-    ## Z 0.8005492 0.9253287 1.0000000
+    ## X 1.0000000 0.9031589 0.8171852
+    ## Y 0.9031589 1.0000000 0.9233153
+    ## Z 0.8171852 0.9233153 1.0000000
 
 **Ejercicio 2.4.**  
 *Vamos a crear un vector atómico de cada uno de los cinco tipos vistos
@@ -381,7 +381,7 @@ sigma <- 15
 x <- rnorm(30, 100, 15)
 
 
-y <- (1/(sigma*sqrt(2*pi)))*exp(-((x-mu)^2)/(2*sigma^2))
+y <- (1/(sigma*sqrt(2*pi)))*exp(-((x-mu)**2)/(2*sigma**2))
 
 plot(x,y)
 ```

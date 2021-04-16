@@ -1,0 +1,132 @@
+---
+title: "Ejercicios Tema 4"
+output: github_document
+---
+
+__Ejercicio 4.1.__  
+_A continuación se muestran varios vectores. Convierte a un vector entero aquello que __no sean___ _ya enteros. Observa cuáles pueden coercionarse y cuáles no, y los resultados._
+```{r}
+
+#v1 <- c("1", "3.14")
+
+#v2 <- 1:12
+
+#v3 <- seq(2, 6)
+
+#v4 <- seq(0, 5, length.out = 5)
+
+#v5 <- rnorm(10)
+
+#m <- matrix(1:12, 3, 4)
+
+```
+
+__Ejercicio 4.2.__  
+_Una de las cinco constantes que implementa R es pi. Y uno de los usos posibles es crear una secuencia de valores entre −2π y 2π para hacer un gráfico, por ejemplo, de la función coseno._  
+```{r}
+
+
+
+```
+
+__Ejercicio 4.3.__  
+_Dado el vector v <- 1:12, sustituye por cero los múltiplos de 3._  
+```{r}
+
+```
+
+__Ejercicio 4.4.__ 
+_Calcula el sumatorio y el productorio del vector v <- 1:4._  
+```{r}
+
+```
+
+__Ejercicio 4.5.__  
+_Obtenemos los vectores v1 y v2 muestreando 5 elementos del vector v <- 0:10 mediante la instrucción sample(). Indica, para cada elemento de v1, si es mayor que el elemento correspondiente de v2._
+```{r}
+
+
+```
+
+__Ejercicio 4.6.__  
+_Observa el curioso resultado de la siguiente comparación:_
+```{r}
+0.3/3 == 0.4/4
+```
+
+_¿Por qué ocurre esto? Para localizar el error, comprueba las siguientes posibilidades:_
+- _Es un error de precedencia de operadores._
+- _Haz que R muestre más decimales mediante options(digits = 22) y observa el resultado._
+- _Busca en la ayuda el término Comparison para conocer las particularidades, si las hay, del operador ==._
+```{r}
+
+```
+
+__Ejercicio 4.7.__  
+_En el capítulo se muestra cómo, al utilizar minúsculas, R no reconoce los valores lógicos TRUE y FALSE, y se limitará a buscar los objetos indicados (t, f, true, false) para ejecutar el código._
+```{r}
+
+```
+
+__Ejercicio 4.8.__
+_A partir de los vectores edad y sexo, definidos a continuación, muestra el sexo de aquellos sujetos con edades menores de 35 años._  
+```{r}
+
+```
+
+__Ejercicio 4.9.__  
+_A partir del vector alf <- c('A', 'B', 'C'), obtén los vectores siguientes:_  
+- 'A 1' 'B 2' 'C 3' 'A 4' 'B 5' 'C 6'  
+- 'A1' 'B2' 'C3' 'A4' 'B5' 'C6'  
+- 'A2' 'B4' 'C6' 'A2' 'B4' 'C6'  
+- 'A1_|_B2_|_C3_|_A4_|_B5_|_C6'  
+```{r}
+
+```
+
+__Ejercicio 4.10.__  
+_Genera los nombres para las variables que almacenan las respuestas a 10 test (nombrados A, B, C. . . ), cada uno con 5 ítems. Los nombres deben tener el formato: A_1, A_2,..., A_5,..., J_1, J_2, J_3, J_4, J_5._
+```{r}
+
+```
+
+__Ejercicio 4.11.__  
+_La función print() tiene más argumentos que explorar. Utiliza la ayuda de la función y, partiendo del vector cad, estudia las siguientes instrucciones y predice qué se obtendrá en cada caso. Comenzamos definiendo el vector:_
+```{r}
+
+```
+
+__Ejercicio 4.12.__  
+_Crea la matrix P, de dimensión 3 × 4, que contiene los 12 primeros números primos. A partir de ahí extrae:_
+- _la primera fila;_  
+- _la segunda columna;_  
+- _el valor de la segunda fila y cuarta columna;_  
+- _las filas dos y tres;_  
+- _las columnas dos y cuatro;_  
+- _la intersección de lo indicado en los dos apartados anteriores;_  
+- _todo lo no incluido en las filas 2 y 3 y en las columnas 2 y 4;_  
+- _la tercera fila, sin perder su clase matrix._  
+```{r}
+
+```
+
+__Ejercicio 4.13.__  
+_A partir de la matriz P del ejercicio anterior:_  
+- _comprueba que P es un objeto de clase matrix;_  
+- _obtén la suma de todos sus elementos;_  
+- _obtén la suma de las columnas y la media de las filas;_  
+- _obtén el quinto valor primo;_  
+```{r}
+
+```
+
+__Ejercicio 4.14.__  
+_El vector reg <- c('AND', 'EXT', 'MAD', 'AND', 'EXT', 'AND) recoge la región de procedencia de una serie de registros; a partir de él:_
+- _Crea el factor freg y muéstralo_  
+- _Comprueba su tipo, clase y atributos._  
+- _Comprueba sus niveles: número y etiquetas._  
+- _Extrae ahora el vector reg2, con los códigos de los niveles._  
+```{r}
+
+```
+
