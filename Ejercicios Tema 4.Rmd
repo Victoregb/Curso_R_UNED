@@ -212,8 +212,8 @@ reg <- c('AND', 'EXT', 'MAD', 'AND', 'EXT', 'AND')
 (rgstr <- factor(reg))
 
 # Comprueba su tipo, clase y atributos
-#¿Os acordaís de aquella función que escribimos para comprobar este tipo de dato?
-#Pues la guardé en un script llamado atrib.R y así me ahorro escribr codigo.
+#¿Os acordaís de aquella función que escribimos para comprobar este tipo de datos?
+#Pues la guardé en un script llamado atrib.R y así me ahorro escribir código.
 source('atrib.R')
 
 #Le pasamos los datos a la función como lista.
@@ -227,5 +227,7 @@ str(rgstr)
 #Mal, te piden el vector, pero como números, en código.
 #Así que la respuesta correcta es:
 (reg2 <- as.numeric(rgstr))
+#La opción de as.integer también funciona.
+(reg <- as.integer(rgstr))
 ```
 

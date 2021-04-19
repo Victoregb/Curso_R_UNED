@@ -74,13 +74,13 @@ v <- 0:10
 (v1 <- sample(v, 5))
 ```
 
-    ## [1] 6 8 7 2 4
+    ## [1] 2 5 4 9 0
 
 ``` r
 (v2 <- sample(v, 5))
 ```
 
-    ## [1]  6  3 10  8  5
+    ## [1]  8  2  9 10  4
 
 ``` r
 v1 > v2
@@ -379,8 +379,8 @@ reg <- c('AND', 'EXT', 'MAD', 'AND', 'EXT', 'AND')
 
 ``` r
 # Comprueba su tipo, clase y atributos
-#¿Os acordaís de aquella función que escribimos para comprobar este tipo de dato?
-#Pues la guardé en un script llamado atrib.R y así me ahorro escribr codigo.
+#¿Os acordaís de aquella función que escribimos para comprobar este tipo de datos?
+#Pues la guardé en un script llamado atrib.R y así me ahorro escribir código.
 source('atrib.R')
 
 #Le pasamos los datos a la función como lista.
@@ -412,6 +412,13 @@ str(rgstr)
 #Mal, te piden el vector, pero como números, en código.
 #Así que la respuesta correcta es:
 (reg2 <- as.numeric(rgstr))
+```
+
+    ## [1] 1 2 3 1 2 1
+
+``` r
+#La opción de as.integer también funciona.
+(reg <- as.integer(rgstr))
 ```
 
     ## [1] 1 2 3 1 2 1
