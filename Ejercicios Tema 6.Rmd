@@ -1,0 +1,128 @@
+---
+title: "Ejercicios Tema 6"
+output: github_document
+---
+
+__Ejercicio 6.1.__
+_Saber si un archivo es de texto o binario es fácil: basta abrirlo con un editor de textos y, si podemos leer lo que aparece, es de texto. Compruébalo con los archivos del directorio Ejercicios._
+```{r}
+#Abrimos el terminal y vamos a la carpeta :
+# ~/Curso_R_UNED/Datos_y_Ejercicios/Ejercicios. (Vuestra ruta puede ser diferente.)
+# Ver que archivos hay en la carpeta con ls
+# Abrir los archivos con cat, por ejemplo cat opinion.sav
+
+```
+
+__Ejercicio 6.2.__
+_En la carpeta Ejercicios, abre el archivo medidas.rda. Observa su contenido._
+```{r}
+#Cargamos los datos.
+load('Datos_y_ejercicios/Ejercicios/medidas.rda')
+source('atrib.R')
+
+#Observamos las medidas
+atrib(medidas)
+
+```
+
+__Ejercicio 6.3.__  
+_¿Es posible guardar un archivo de datos de R con una extensión que no sea una de las dos indicadas: .rda y .RData?_
+```{r}
+#Si que se puede, ya que lo determinas tu al guardarlo y 'el papel lo aguanta todo'
+x <- c(1,2,3,4)
+save(x, file = "Xdatos.ext_inventada")
+#Limpiamos la zona de trabajo. 
+rm(list=ls())
+load('Xdatos.ext_inventada')
+ls()
+```
+
+__Ejercicio 6.4.__  
+_El archivo 'Ejercicios/items.txt' contiene la respuesta a cuatro ítems. Impórtalo y almacena el resultado en items1._
+```{r}
+items1 <- read.table('Datos_y_ejercicios/Ejercicios/items.txt', header=T)
+
+```
+
+__Ejercicio 6.5.__  
+_Uno de los formatos más utilizados en el almacenamiento de datos es el csv, por su simplicidad. No obstante, en español los decimales se codifican con una coma, y las hojas de cálculo, por ejemplo, los traducen a csv separando mediante punto y coma, ';'. Es el caso del archivo TR.csv, que contiene los tiempos de reacción de cada sujeto para las dos medidas, y que proponemos importar de dos maneras distintas y almacenar en el objeto tr._  
+```{r}
+
+tr <- read.table("Datos_y_ejercicios/Ejercicios/TR.csv",
+                 header = T, 
+                 sep = ";",
+                 dec = ",")
+```
+
+__Ejercicio 6.6.__
+_Hagamos ahora el ejercicio inverso: guardar items1 en un archivo, items1_esp.csv, adaptado al entorno español._
+```{r}
+
+write.table(items1, "Datos_y_ejercicios/Ejercicios/items1_esp.csv",
+            col.names = T, 
+            sep = ";", 
+            dec = ",", 
+            quote = F)
+
+```
+
+__Ejercicio 6.7.__
+_Entre los archivos de datos del capítulo tenemos algunos de hojas de cálculo. Impórtalos usando los paquetes apropiados. Recuerda que, en caso de problemas, lo más eficiente es transformarlos en archivos de texto._
+```{r}
+#instalamos el paquete necesario.
+#install.packages("openxlsx")
+items_xls <-  openxlsx::read.xlsx('Datos_y_ejercicios/Ejercicios/items.xlsx')
+
+#instalamos el paquete necesario.
+#install.packages("readODS")
+items_ods <- readODS::read_ods('Datos_y_ejercicios/Ejercicios/items.ods')
+
+```
+
+__Ejercicio 6.8.__  
+_Para finalizar el capítulo importaremos el archivo opinion.sav y, a continuación, uniremos la información procedente de los diferentes archivos en un único data frame, incluyendo otro archivo no tratado hasta ahora: partic.txt, que contiene el sexo de los participantes._
+```{r}
+#Limpiamos el espacio de trabajo.
+rm(list = ls())
+
+#Cargamos todos los archivos que hemos usado hasta ahora.
+load('Datos_y_ejercicios/Ejercicios/medidas.rda')
+items1 <- read.table('Datos_y_ejercicios/Ejercicios/items.txt', header=T)
+tr <- read.table("Datos_y_ejercicios/Ejercicios/TR.csv", header = T, sep = ";", dec = ",")
+items_xls <-  openxlsx::read.xlsx('Datos_y_ejercicios/Ejercicios/items.xlsx')
+items_ods <- readODS::read_ods('Datos_y_ejercicios/Ejercicios/items.ods')
+
+#Y uno que no.
+items_2 <- read.table("Datos_y_ejercicios/Ejercicios/partic.txt", header = T, stringsAsFactors = T)
+
+#Instalamos el paquete que nos permitirá leer los archivos de SPSS
+#install.packages("Hmisc")
+opinion <- Hmisc::spss.get('Datos_y_ejercicios/Ejercicios/opinion.sav')
+
+#Los empezamos a combinar
+itms_xls_ods <- rbind(items_ods, items_xls)
+
+prob <- merge(items_2, medidas, by = "Id")
+prob <- merge(prob, opinion, by = "Id")
+prob<- merge(prob, tr, by.x = "Id", by.y = "id")
+prob<- merge(prob, items1, by.x = "Id", by.y = "id")
+prob<- merge(prob, itms_xls_ods, by.x = "Id", by.y = "id")
+
+source('atrib.R')
+atrib(prob)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
